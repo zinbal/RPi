@@ -1,14 +1,15 @@
 import RPi.GPIO as GPIO
 import time
+
 maxd=200; mind=4
 TRIG=21;ECHO=20
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(TRIG,GPIO.OUT)
-GPIO.setup(ECHO,GPIO.IN)
+
 try:
     while True:
         print("measuring distance")
-        
+        GPIO.setup(TRIG,GPIO.OUT)
+        GPIO.setup(ECHO,GPIO.IN)
         GPIO.output(TRIG,False)
         time.sleep(0.2)
         GPIO.output(TRIG,True)
@@ -19,13 +20,14 @@ try:
             pulse_start=time.time()
         while GPIO.input(ECHO)==1:
             pulse_end=time.time()
-        pulse_duration=pulse_end-pulse_start        #calculate time taken
+        pulse_duration=pulse_end-pulse_start
         
-        distance=pulse_duration*17150               #calculate distance
-        distance=round(distance,2)                  #round off to 2nd decimal value
+        distance=pulse_duration*17150
+        distance=round(distance,2)
         
         if (distance<mind):
             distance="too close"
+            #break
         elif (distance>maxd):
             distance="too far"
             
@@ -34,3 +36,5 @@ try:
         time.sleep(1)
 except:
     GPIO.cleanup()
+
+
