@@ -12,9 +12,9 @@ from email import encoders
 send_from =  "yournamehere"
 send_to = "varnit.kashyap@gmail.com"
 subject = "INTRUSION DETECTED"
-body = "There is a intruder in your AREA   P.F.A. intruder image"		#enter your mail body here in " "
-username  =  "mailbotbynandwana@gmail.com"						  		#enter your email id here
-password =  "Harsh*2303"													#enter your pass here
+body = "There is a intruder in your AREA   P.F.A. intruder image"			#enter your mail body here in " "
+username  =  "mymailid@gmail.com"						  	#enter your email id here
+password =  "mypassword"								#enter your pass here
 attachmentPath  = "/home/pi/Desktop/threat.jpg"          				#enter attachment path here
 
 
