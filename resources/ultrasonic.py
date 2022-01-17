@@ -19,10 +19,10 @@ try:
             pulse_start=time.time()
         while GPIO.input(ECHO)==1:
             pulse_end=time.time()
-        pulse_duration=pulse_end-pulse_start
+        pulse_duration=pulse_end-pulse_start        #calculate time taken
         
-        distance=pulse_duration*17150
-        distance=round(distance,2)
+        distance=pulse_duration*17150               #calculate distance
+        distance=round(distance,2)                  #round off to 2nd decimal value
         
         if (distance<mind):
             distance="too close"
