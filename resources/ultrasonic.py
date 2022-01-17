@@ -3,11 +3,12 @@ import time
 maxd=200; mind=4
 TRIG=21;ECHO=20
 GPIO.setmode(GPIO.BCM)
+GPIO.setup(TRIG,GPIO.OUT)
+GPIO.setup(ECHO,GPIO.IN)
 try:
     while True:
         print("measuring distance")
-        GPIO.setup(TRIG,GPIO.OUT)
-        GPIO.setup(ECHO,GPIO.IN)
+        
         GPIO.output(TRIG,False)
         time.sleep(0.2)
         GPIO.output(TRIG,True)
