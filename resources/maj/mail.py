@@ -10,7 +10,7 @@ from email import encoders
 	Keep in Mind to turn on less secure apps from < https://myaccount.google.com/lesssecureapps >
 '''
 send_from =  "yournamehere"
-send_to = "varnit.kashyap@gmail.com"
+send_to = "reciver.mail@gmail.com"
 subject = "INTRUSION DETECTED"
 body = "There is a intruder in your AREA   P.F.A. intruder image"			#enter your mail body here in " "
 username  =  "mymailid@gmail.com"						  	#enter your email id here
