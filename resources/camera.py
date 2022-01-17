@@ -6,12 +6,13 @@
 from picamera import PiCamera
 import time
 
-
 camera=PiCamera()
-camera.resolution = (1920,1080)
+camera.resolution= (1280,1080)
 camera.rotation=180
 time.sleep(2)
 
-fn="/home/pi/Desktop/threat.jpg"
-camera.capture(fn)
-print("complete")
+fn="/home/pi/Desktop/2/"
+for i in range(0,10):
+    a=fn+str(i)+".jpg"
+    camera.capture(a)
+    print("complete")
