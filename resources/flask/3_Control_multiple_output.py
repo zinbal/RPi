@@ -34,10 +34,10 @@ def index():
 def ledt(ledp,state):
     if ledp in led:
         if state==0:
-            GPIO.output(led,GPIO.LOW)
+            GPIO.output(ledp,GPIO.LOW)
             k= "low"
         elif state==1:
-            GPIO.output(led,GPIO.HIGH)
+            GPIO.output(ledp,GPIO.HIGH)
             k= "high"
         else:
             k= "Return 0 or 1 "
