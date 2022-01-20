@@ -1,0 +1,70 @@
+'''
+connect either led or relay on pin 17 and 27
+'''
+
+from flask import Flask
+from flask import redirect
+import RPi.GPIO as GPIO
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(17,GPIO.OUT)
+GPIO.setup(27,GPIO.OUT)
+GPIO.output(17,GPIO.LOW)
+GPIO.output(27,GPIO.LOW)
+
+app = Flask(__name__)
+
+@app.route("/")
+def index():
+
+    ptr = "<!DOCTYPE html> <html>\n";
+    ptr +="<head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, user-scalable=no\">\n";
+    ptr +="<title>Automation Setup</title>\n";
+    ptr +="<style>html { font-family: Helvetica; display: inline-block; margin: 0px auto; text-align: center;}\n";
+    ptr +="body{margin-top: 50px;} h1 {color: #444444;margin: 50px auto 30px;} h3 {color: #444444;margin-bottom: 50px;}\n";
+    ptr +=".button {display: block;width: 80px;background-color: #1abc9c;border: none;color: white;padding: 13px 30px;text-decoration: none;font-size: 25px;margin: 0px auto 35px;cursor: pointer;border-radius: 4px;}\n";
+    ptr +=".button-on {background-color: #1abc9c;}\n";
+    ptr +=".button-on:active {background-color: #16a085;}\n";
+    ptr +=".button-off {background-color: #34495e;}\n";
+    ptr +=".button-off:active {background-color: #2c3e50;}\n";
+    ptr +="p {font-size: 14px;color: #888;margin-bottom: 5px;}\n";
+    ptr +="</style>\n";
+    ptr +="</head>\n";ptr +="<body>\n";
+    ptr +="<h1>RASPBERRY flask Web Server</h1>\n";
+    ptr +="<h3>FOR 1st POWER SUPPLY</h3>\n";
+    
+    ptr +="<p>IF LED1 Status: ON</p><a class=\"button button-off\" href=\"17\OFF\">OFF</a>\t <p>IF LED1 Status: OFF</p><a class=\"button button-on\" href=\"17\ON\">ON</a>\n";
+    ptr +="<h3>FOR 2nd POWER SUPPLY</h3>\n";
+    ptr +="<p>IF LED2 Status: ON</p><a class=\"button button-off\" href=\"27\OFF\">OFF</a>\t <p>IF LED2 Status: OFF</p><a class=\"button button-on\" href=\"27\ON\">ON</a>\n";
+    
+    ptr +="</body>\n";
+    ptr +="</html>\n";
+    return ptr
+
+
+@app.route("/17/OFF")
+def OFF17():
+    GPIO.output(17,GPIO.LOW)
+    return redirect("/")
+
+@app.route("/17/ON")
+def ON17():
+    GPIO.output(17,GPIO.HIGH)
+    return redirect("/")
+
+@app.route("/27/OFF")
+def OFF27():
+    GPIO.output(27,GPIO.LOW)
+    return redirect("/")
+
+@app.route("/27/ON")
+def ON27():
+    GPIO.output(27,GPIO.LOW)
+    return redirect("/")
+
+
+
+try:
+    app.run(port=8000)
+    GPIO.cleanup()
+except:
+    GPIO.cleanup()
